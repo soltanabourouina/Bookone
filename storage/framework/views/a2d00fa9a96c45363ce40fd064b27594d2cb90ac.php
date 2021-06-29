@@ -1,0 +1,1 @@
+<?php /**PATH /home/soltana/Bureau/invoices/resources/views/layouts/sidebar.blade.php ENDPATH**/ ?>
