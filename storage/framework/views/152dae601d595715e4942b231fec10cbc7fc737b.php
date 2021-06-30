@@ -214,7 +214,7 @@
                 </div>
             </div>
         </div>
-       
+
 
         <div class="col-lg-12 col-xl-5">
             <div class="card card-dashboard-map-one">
@@ -252,8 +252,6 @@
     <!--Internal  index js -->
     <script src="<?php echo e(URL::asset('assets/js/index.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('assets/js/jquery.vmap.sampledata.js')); ?>"></script>
-
-    
-    <?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/soltana/Bureau/invoices/resources/views/home.blade.php ENDPATH**/ ?>

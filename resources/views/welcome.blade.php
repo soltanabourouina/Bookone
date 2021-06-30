@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-<link rel="stylesheet" href="{{('css/app.css')}}">
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -83,15 +83,7 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-                <div id="app">
-                    <div class="side-menu__item">
-                        <router-link to="/clients" class="nav-link">Clients</router-link>
-              
-                        <router-view></router-view>
-                    </div>
-                    
-                </div>
-                
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -104,6 +96,5 @@
                 </div>
             </div>
         </div>
-        <script src="{{ asset('js/app.js') }}" ></script>
     </body>
 </html>
