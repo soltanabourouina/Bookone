@@ -38,13 +38,7 @@ class RowValidator
         $attributes = $this->attributes($import);
 
         try {
-            $validator = $this->validator->make($rows, $rules, $messages, $attributes);
-
-            if (method_exists($import, 'withValidator')) {
-                $import->withValidator($validator);
-            }
-
-            $validator->validate();
+            $this->validator->make($rows, $rules, $messages, $attributes)->validate();
         } catch (IlluminateValidationException $e) {
             $failures = [];
             foreach ($e->errors() as $attribute => $messages) {
@@ -56,7 +50,7 @@ class RowValidator
                     $row,
                     $attributeName,
                     str_replace($attribute, $attributeName, $messages),
-                    $rows[$row] ?? []
+                    $rows[$row]
                 );
             }
 

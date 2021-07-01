@@ -9,13 +9,11 @@ class Contact extends Model
 {
     protected $fillable = [
         'nom_entreprise',
-        'logo',
         'nom',
         'prenom',
         'titre',
         'tel',
         'email',
-        'motif',
         'linkedin'
     ];
     public function motifs()

@@ -71,12 +71,13 @@
 											<a class="nav-link active" data-toggle="tab" href="">All Contacts</a>
 										</nav>
 
-										<!--div class="main-contacts-list" id="mainContactList">
+										<div class="main-contacts-list" id="mainContactList">
                                             @foreach ($contacts as $contact)
 											<div class="main-contact-item ">
 										
 												<div class="main-contact-body">
-													<h6>{{ $contact->name }}</h6><span class="phone">{{ $contact->tel }}</span>
+													<h5>{{ $contact->nom_entreprise }}</h5>
+													<h6>{{ $contact->nom  . ' ' .$contact->prenom }}</h6><span class="phone">{{ $contact->tel }}</span>
 												</div>
 												<a class="main-contact-star" href="">
 													<i class="fe fe-star mr-1 text-warning"></i>
@@ -84,7 +85,7 @@
 												</a>
 											</div>
                                             @endforeach
-										</div-->
+										</div>
 									</div>
 								</div>
 							</div>
@@ -125,8 +126,8 @@
                             <input type="tel" class="phone form-control" id="tel" name="tel" required>
                         </div>
                         <div class="form-group">
-                            <label for="tel"> Nom *</label>
-                            <input type="text" class="form-control" id="tel" name="tel" required>
+                            <label for="titre"> Titre *</label>
+                            <input type="text" class="form-control" id="titre" name="titre" required>
                         </div>
                         <div class="form-group">
                             <label for="email"> Email*</label>
@@ -138,10 +139,6 @@
                         </div>
                       
 
-                        <div class="form-group">
-                            <label for="motif">motif</label>
-                            <textarea class="form-control" id="motif" name="motif" rows="3"></textarea>
-                        </div>
 
                     </div>
                     <div class="modal-footer">
