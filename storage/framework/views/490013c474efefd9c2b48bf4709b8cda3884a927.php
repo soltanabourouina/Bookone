@@ -2,7 +2,7 @@
     <!--Internal   Notify -->
     <link href="<?php echo e(URL::asset('assets/plugins/notify/css/notifIt.css')); ?>" rel="stylesheet" />
 <?php $__env->startSection('title'); ?>
-contacts et Permissions
+Departements
 <?php $__env->stopSection(); ?>
 <link href="<?php echo e(URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')); ?>" rel="stylesheet" />
 <link href="<?php echo e(URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')); ?>" rel="stylesheet">
@@ -19,8 +19,8 @@ contacts et Permissions
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">contacts</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                Permissions et contacts</span>
+            <h4 class="content-title mb-0 my-auto">Departements</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
+                Liste des Departements</span>
         </div>
     </div>
 </div>
@@ -73,46 +73,28 @@ aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"> Ajouter un contact</h5>
+            <h5 class="modal-title" id="exampleModalLabel"> Ajouter un  departements</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="<?php echo e(route('contacts.store')); ?>" method="post">
+        <form action="<?php echo e(route('departements.store')); ?>" method="post">
             <?php echo e(csrf_field()); ?>
 
             <div class="modal-body">
+               
                 <div class="form-group">
-                    <label for="nom_entreprise"> Nom de l'entreprise*</label>
-                    <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
-                </div>
-                <div class="form-group">
-                    <label for="nom"> Nom *</label>
+                    <label for="nom"> Nom de la departements *</label>
                     <input type="text" class="form-control" id="nom" name="nom" required>
                 </div>
-                <div class="form-group">
-                    <label for="prenom"> Prénom*</label>
-                    <input type="text" class="form-control" id="prenom" name="prenom" required>
-                </div>
-                <div class="form-group">
-                    <label for="tel"> Tel*</label>
-                    <input type="tel" class="phone form-control" id="tel" name="tel" required>
-                </div>
-                <div class="form-group">
-                    <label for="titre"> Titre *</label>
-                    <input type="text" class="form-control" id="titre" name="titre" required>
-                </div>
-                <div class="form-group">
-                    <label for="email"> Email*</label>
-                    <input type="text" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="linkedin"> Linkedin*</label>
-                    <input type="text" class="form-control" id="linkedin" name="linkedin" required>
-                </div>
-              
-
-
+                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">region</label>
+                <select name="region_id" id="region_id" class="form-control" required>
+                    <option value="" selected disabled> --indiquer la region--</option>
+                    <?php $__currentLoopData = $regions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $region): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($region->id); ?>"><?php echo e($region->nom); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+               
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success">Valider</button>
@@ -131,7 +113,7 @@ aria-hidden="true">
 							<div class="d-flex justify-content-between">
 								<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('utilisateurs')): ?>
 									<a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale"
-										data-toggle="modal" href="#exampleModal"> Ajouter un contact</a>
+										data-toggle="modal" href="#exampleModal"> Ajouter un  departements</a>
 								<?php endif; ?>
 							</div>
                         </div>
@@ -142,37 +124,39 @@ aria-hidden="true">
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-					<table class="table table-hover" id="contacts" data-page-length='50' style=" text-align: center;">
+					<table class="table table-hover" id="departements" data-page-length='50' style=" text-align: center;">
 						<thead>
                         <thead>
                             <tr>
                               
-                                <th>Nom de l'entreprise</th>
-								<th>Nom - Prenom</th>
+                                
+								<th>Nom </th>
+                                <th>Region </th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $__currentLoopData = $contacts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $contact): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $departements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $departements): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                    
-                                    <td><?php echo e($contact->nom_entreprise); ?></td>
-									<td><?php echo e($contact->nom .' '.$contact->prenom); ?></td>
+                                
+									<td><?php echo e($departements->nom); ?></td>
+                                    <td><?php echo e($departements->region->nom); ?></td>
                                     <td>
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('afficher permissions')): ?>
                                             <a class="btn btn-success btn-sm"
-                                                href="<?php echo e(route('contacts.show', $contact->id)); ?>">Afficher</a>
+                                                href="<?php echo e(route('departements.show', $departements->id)); ?>">Afficher</a>
                                         <?php endif; ?>
                                         
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('modifier permissions')): ?>
                                             <a class="btn btn-primary btn-sm"
-                                                href="<?php echo e(route('contacts.edit', $contact->id)); ?>">Modifier</a>
+                                                href="<?php echo e(route('departements.edit', $departements->id)); ?>">Modifier</a>
                                         <?php endif; ?>
 
-                                        <?php if($contact->name !== 'owner'): ?>
+                                        <?php if($departements->nom !== 'owner'): ?>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('supprimer permissions')): ?>
-                                                <?php echo Form::open(['method' => 'DELETE', 'route' => ['contacts.destroy',
-                                                $contact->id], 'style' => 'display:inline']); ?>
+                                                <?php echo Form::open(['method' => 'DELETE', 'route' => ['departements.destroy',
+                                                $departements->id], 'style' => 'display:inline']); ?>
 
                                                 <?php echo Form::submit('supprimer', ['class' => 'btn btn-danger btn-sm']); ?>
 
@@ -218,10 +202,10 @@ aria-hidden="true">
 <script src="<?php echo e(URL::asset('assets/plugins/notify/js/notifit-custom.js')); ?>"></script>
 <script>
 	$(document).ready(function() {
-    $('#contacts').DataTable();
+    $('#departements').DataTable();
 } );
 
 </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/soltana/Bureau/Bookone/resources/views/contacts/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/soltana/Bureau/Bookone/resources/views/departements/index.blade.php ENDPATH**/ ?>

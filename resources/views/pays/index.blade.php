@@ -3,7 +3,7 @@
     <!--Internal   Notify -->
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 @section('title')
-contacts et Permissions
+pays
 @stop
 <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
 <link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
@@ -20,8 +20,8 @@ contacts et Permissions
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">contacts</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
-                Permissions et contacts</span>
+            <h4 class="content-title mb-0 my-auto">pays</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"> /
+                pays</span>
         </div>
     </div>
 </div>
@@ -74,45 +74,26 @@ aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"> Ajouter un contact</h5>
+            <h5 class="modal-title" id="exampleModalLabel"> Ajouter un pays</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{ route('contacts.store') }}" method="post">
+        <form action="{{ route('pays.store') }}" method="post">
             {{ csrf_field() }}
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="nom_entreprise"> Nom de l'entreprise*</label>
-                    <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
+                    <label for="code"> Code pays*</label>
+                    <input type="text" class="form-control" id="code" name="code" required>
                 </div>
                 <div class="form-group">
-                    <label for="nom"> Nom *</label>
+                    <label for="nom"> Nom du pays *</label>
                     <input type="text" class="form-control" id="nom" name="nom" required>
                 </div>
                 <div class="form-group">
-                    <label for="prenom"> Prénom*</label>
-                    <input type="text" class="form-control" id="prenom" name="prenom" required>
+                    <label for="continent"> Contient*</label>
+                    <input type="text" class="form-control" id="continent" name="continent" required>
                 </div>
-                <div class="form-group">
-                    <label for="tel"> Tel*</label>
-                    <input type="tel" class="phone form-control" id="tel" name="tel" required>
-                </div>
-                <div class="form-group">
-                    <label for="titre"> Titre *</label>
-                    <input type="text" class="form-control" id="titre" name="titre" required>
-                </div>
-                <div class="form-group">
-                    <label for="email"> Email*</label>
-                    <input type="text" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="linkedin"> Linkedin*</label>
-                    <input type="text" class="form-control" id="linkedin" name="linkedin" required>
-                </div>
-              
-
-
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success">Valider</button>
@@ -131,7 +112,7 @@ aria-hidden="true">
 							<div class="d-flex justify-content-between">
 								@can('utilisateurs')
 									<a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-scale"
-										data-toggle="modal" href="#exampleModal"> Ajouter un contact</a>
+										data-toggle="modal" href="#exampleModal"> Ajouter un pays</a>
 								@endcan
 							</div>
                         </div>
@@ -142,37 +123,39 @@ aria-hidden="true">
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-					<table class="table table-hover" id="contacts" data-page-length='50' style=" text-align: center;">
+					<table class="table table-hover" id="pays" data-page-length='50' style=" text-align: center;">
 						<thead>
                         <thead>
                             <tr>
                               
-                                <th>Nom de l'entreprise</th>
-								<th>Nom - Prenom</th>
+                                <th>Code</th>
+								<th>Nom </th>
+                                <th>Continent </th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($contacts as $key => $contact)
+                            @foreach ($pays as $key => $pays)
                                 <tr>
                                    
-                                    <td>{{ $contact->nom_entreprise }}</td>
-									<td>{{ $contact->nom .' '.$contact->prenom}}</td>
+                                    <td>{{ $pays->code }}</td>
+									<td>{{ $pays->nom}}</td>
+                                    <td>{{ $pays->continent}}</td>
                                     <td>
                                         @can('afficher permissions')
                                             <a class="btn btn-success btn-sm"
-                                                href="{{ route('contacts.show', $contact->id) }}">Afficher</a>
+                                                href="{{ route('pays.show', $pays->id) }}">Afficher</a>
                                         @endcan
                                         
                                         @can('modifier permissions')
                                             <a class="btn btn-primary btn-sm"
-                                                href="{{ route('contacts.edit', $contact->id) }}">Modifier</a>
+                                                href="{{ route('pays.edit', $pays->id) }}">Modifier</a>
                                         @endcan
 
-                                        @if ($contact->name !== 'owner')
+                                        @if ($pays->nom !== 'owner')
                                             @can('supprimer permissions')
-                                                {!! Form::open(['method' => 'DELETE', 'route' => ['contacts.destroy',
-                                                $contact->id], 'style' => 'display:inline']) !!}
+                                                {!! Form::open(['method' => 'DELETE', 'route' => ['pays.destroy',
+                                                $pays->id], 'style' => 'display:inline']) !!}
                                                 {!! Form::submit('supprimer', ['class' => 'btn btn-danger btn-sm']) !!}
                                                 {!! Form::close() !!}
                                             @endcan
@@ -215,7 +198,7 @@ aria-hidden="true">
 <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 <script>
 	$(document).ready(function() {
-    $('#contacts').DataTable();
+    $('#pays').DataTable();
 } );
 
 </script>

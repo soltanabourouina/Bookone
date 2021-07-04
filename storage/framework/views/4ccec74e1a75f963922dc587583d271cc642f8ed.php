@@ -1,14 +1,13 @@
-@extends('layouts.master')
-@section('css')
+<?php $__env->startSection('css'); ?>
 <!-- Internal Nice-select css  -->
-<link href="{{URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet" />
-@section('title')
+<link href="<?php echo e(URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')); ?>" rel="stylesheet" />
+<?php $__env->startSection('title'); ?>
 اضافة مستخدم - مورا سوفت للادارة القانونية
-@stop
+<?php $__env->stopSection(); ?>
 
 
-@endsection
-@section('page-header')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-header'); ?>
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
@@ -19,38 +18,39 @@
     </div>
 </div>
 <!-- breadcrumb -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <!-- row -->
 <div class="row">
 
 
     <div class="col-lg-12 col-md-12">
 
-        @if (count($errors) > 0)
+        <?php if(count($errors) > 0): ?>
         <div class="alert alert-danger">
             <button aria-label="Close" class="close" data-dismiss="alert" type="button">
                 <span aria-hidden="true">&times;</span>
             </button>
             <strong>خطا</strong>
             <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
         </div>
-        @endif
+        <?php endif; ?>
 
         <div class="card">
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">رجوع</a>
+                        <a class="btn btn-primary btn-sm" href="<?php echo e(route('users.index')); ?>">رجوع</a>
                     </div>
                 </div><br>
                 <form class="parsley-style-1" id="selectForm2" autocomplete="off" name="selectForm2"
-                    action="{{route('users.store','test')}}" method="post">
-                    {{csrf_field()}}
+                    action="<?php echo e(route('users.store','test')); ?>" method="post">
+                    <?php echo e(csrf_field()); ?>
+
 
                     <div class="">
 
@@ -98,7 +98,8 @@
                         <div class="col-xs-12 col-md-12">
                             <div class="form-group">
                                 <label class="form-label"> صلاحية المستخدم</label>
-                                {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+                                <?php echo Form::select('roles_name[]', $roles,[], array('class' => 'form-control','multiple')); ?>
+
                             </div>
                         </div>
                     </div>
@@ -115,16 +116,17 @@
 <!-- Container closed -->
 </div>
 <!-- main-content closed -->
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 
 
 <!-- Internal Nice-select js-->
-<script src="{{URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js')}}"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js')); ?>"></script>
 
 <!--Internal  Parsley.min js -->
-<script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/parsleyjs/parsley.min.js')); ?>"></script>
 <!-- Internal Form-validation js -->
-<script src="{{URL::asset('assets/js/form-validation.js')}}"></script>
-@endsection
+<script src="<?php echo e(URL::asset('assets/js/form-validation.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/soltana/Bureau/Bookone/resources/views/users/Add_user.blade.php ENDPATH**/ ?>

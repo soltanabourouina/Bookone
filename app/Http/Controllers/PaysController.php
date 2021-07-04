@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
+use App\pays;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class PaysController extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +16,8 @@ class ContactController extends Controller
     public function index()
     {
      
-        $contacts = Contact::all();
-        return view('contacts.index', compact('contacts'));
+        $pays = pays::all();
+        return view('pays.index', compact('pays'));
     }
 
     /**
@@ -37,8 +38,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        return Contact::create($request->all());
-        return view('contacts.index', compact('contacts'));
+        return pays::create($request->all());
+        return view('pays.index', compact('pays'));
     }
 
     /**
@@ -51,9 +52,9 @@ class ContactController extends Controller
 
         public function show($id)
         {
-            $contact = Contact::find($id);
+            $pays = pays::find($id);
        
-            return view('contacts.show',compact('contact'));
+            return view('pays.show',compact('pays'));
         }
          
     
@@ -66,9 +67,9 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        $contact = Contact::find($id);
+        $pays = pays::find($id);
         
-        return view('contacts.edit',compact('contact'));
+        return view('pays.edit',compact('pays'));
         }
 
     /**
@@ -86,19 +87,15 @@ class ContactController extends Controller
 
         {
             $this->validate($request, [
-            'nom_entreprise' => 'required',
-            'nom' => 'required',
-            'email' => 'required|email|unique:contacts,email,'.$id,
-            'titre' => 'required',
-            'prenom' => 'required',
-            'tel' => 'required',
-            'linkedin' => 'required'
+            'libelle' => 'required',
+            
+            'code' => 'required'
             ]);
             $input = $request->all();
            
-            $contact = Contact::find($id);
-            $contact->update($input);
-            return redirect()->route('contacts.index')
+            $pays = pays::find($id);
+            $pays->update($input);
+            return redirect()->route('pays.index')
             ->with('success','Modification');
             }
 
@@ -113,16 +110,7 @@ class ContactController extends Controller
     public function destroy($id)
     {
 
-        Contact::find($id)->delete();
-        return redirect()->route('contacts.index')->with('success','Suppression');
+        pays::find($id)->delete();
+        return redirect()->route('pays.index')->with('success','Suppression');
     }
 }
-
-
-
-
-
-
-
-
-

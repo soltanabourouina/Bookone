@@ -33,6 +33,17 @@ Route::resource('InvoiceAttachments', 'InvoiceAttachmentsController');
 //Route::resource('InvoicesDetails', 'InvoicesDetailsController');
 
 Route::resource('contacts','ContactController');
+Route::resource('zones','ZoneController');
+Route::resource('pays','PaysController');
+Route::resource('regions','RegionController');
+Route::resource('departements','DepartementsController');
+Route::resource('etablissements','EtablissementsController');
+
+
+Route::get('category-tree-view',['uses'=>'OrganismesController@manageCategory']);
+
+Route::post('add-category',['as'=>'add.category','uses'=>'OrganismesController@addCategory']);
+
 
 Route::get('/section/{id}', 'InvoicesController@getproducts');
 

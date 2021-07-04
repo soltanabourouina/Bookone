@@ -26,7 +26,7 @@ Modifier les permissions
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
-    <strong>Erreure</strong>
+    <strong>Erreur</strong>
     <ul>
         @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
