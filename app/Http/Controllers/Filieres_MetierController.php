@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\filieres_metiers;
+use App\categories_professionnel;
 
-use App\etablissements;
-use App\departements;
 use Illuminate\Http\Request;
 
-class EtablissementsController extends Controller
-
+class Filieres_MetierController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +17,9 @@ class EtablissementsController extends Controller
      */
     public function index(Request $request)
     {
-        $departements = departements::all();
-        $etablissements = etablissements::orderBy('id','DESC')->paginate(5);
-        return view('etablissements.index', compact('departements','etablissements'))
+        $categories_professionnels = categories_professionnel::all();
+        $filieres_metiers = filieres_metiers::orderBy('id','DESC')->paginate(5);
+        return view('filieres_metiers.index', compact('categories_professionnels','filieres_metiers'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -43,21 +44,21 @@ class EtablissementsController extends Controller
      */
     public function store(Request $request)
     {
-         etablissements::create($request->all());
-      //  return view('etablissements.index', compact('etablissements'));
+         filieres_metiers::create($request->all());
+      //  return view('filieres_metiers.index', compact('filieres_metiers'));
         
         session()->flash('Add', 'Ajouté avec succés');
-        return redirect('/etablissements');
+        return redirect('/filieres_metiers');
     }
    
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\etablissements  $etablissements
+     * @param  \App\filieres_metiers  $filieres_metiers
      * @return \Illuminate\Http\Response
      */
-    public function show(etablissements $etablissements)
+    public function show(filieres_metiers $filieres_metiers)
     {
         //
     }
@@ -65,10 +66,10 @@ class EtablissementsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\etablissements  $etablissements
+     * @param  \App\filieres_metiers  $filieres_metiers
      * @return \Illuminate\Http\Response
      */
-    public function edit(etablissements $etablissements)
+    public function edit(filieres_metiers $filieres_metiers)
     {
         //
     }
@@ -77,20 +78,19 @@ class EtablissementsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\etablissements  $etablissements
+     * @param  \App\filieres_metiers  $filieres_metiers
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
+       $id = categories_professionnel::where('nom', $request->cat_nom)->first()->id;
 
-       $id = departements::where('nom', $request->dep_nom)->first()->id;
+       $filieres_metiers = filieres_metiers::findOrFail($request->pro_id);
 
-       $etablissements = etablissements::findOrFail($request->pro_id);
-
-       $etablissements->update([
-       'nom' => $request->etab_nom,
+       $filieres_metiers->update([
+       'nom' => $request->fil_nom,
        'code' => $request->code,
-       'departement_id' => $id,
+       'categorie_id' => $id,
        ]);
 
        session()->flash('Edit', 'modifié avec succés');
@@ -101,13 +101,13 @@ class EtablissementsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\etablissements  $etablissements
+     * @param  \App\filieres_metiers  $filieres_metiers
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-         $etablissements = etablissements::findOrFail($request->pro_id);
-         $etablissements->delete();
+         $filieres_metiers = filieres_metiers::findOrFail($request->pro_id);
+         $filieres_metiers->delete();
          session()->flash('delete', 'supprimé avec succés');
          return back();
     }

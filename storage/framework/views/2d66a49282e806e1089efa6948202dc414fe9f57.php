@@ -1,22 +1,21 @@
-@extends('layouts.master')
-@section('css')
+<?php $__env->startSection('css'); ?>
     <!--Internal   Notify -->
-    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
-@section('title')
-Etablissements
-@stop
+    <link href="<?php echo e(URL::asset('assets/plugins/notify/css/notifIt.css')); ?>" rel="stylesheet" />
+<?php $__env->startSection('title'); ?>
+Filieres metiers
+<?php $__env->stopSection(); ?>
 <!-- Internal Data table css -->
 
-<link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
-<link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
-<link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')); ?>" rel="stylesheet" />
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')); ?>" rel="stylesheet" />
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')); ?>" rel="stylesheet">
 <!--Internal   Notify -->
-<link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+<link href="<?php echo e(URL::asset('assets/plugins/notify/css/notifIt.css')); ?>" rel="stylesheet" />
 
-@endsection
-@section('page-header')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-header'); ?>
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
@@ -27,11 +26,11 @@ Etablissements
     </div>
 </div>
 <!-- breadcrumb -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
 
-@if (session()->has('Add'))
+<?php if(session()->has('Add')): ?>
     <script>
         window.onload = function() {
             notif({
@@ -41,9 +40,9 @@ Etablissements
         }
 
     </script>
-@endif
+<?php endif; ?>
 
-@if (session()->has('edit'))
+<?php if(session()->has('edit')): ?>
     <script>
         window.onload = function() {
             notif({
@@ -53,9 +52,9 @@ Etablissements
         }
 
     </script>
-@endif
+<?php endif; ?>
 
-@if (session()->has('delete'))
+<?php if(session()->has('delete')): ?>
     <script>
         window.onload = function() {
             notif({
@@ -65,7 +64,7 @@ Etablissements
         }
 
     </script>
-@endif
+<?php endif; ?>
 
 <!-- row -->
 <div class="row row-sm">
@@ -80,8 +79,9 @@ aria-hidden="true">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{ route('etablissements.store') }}" method="post">
-            {{ csrf_field() }}
+        <form action="<?php echo e(route('filieres_metiers.store')); ?>" method="post">
+            <?php echo e(csrf_field()); ?>
+
             <div class="modal-body">
                
                 <div class="form-group">
@@ -93,11 +93,11 @@ aria-hidden="true">
                     <input type="text" class="form-control" id="code" name="code" required>
                 </div>
                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Departement</label>
-                <select name="departement_id" id="departement_id" class="form-control" required>
-                    <option value="" selected disabled> --indiquer le département--</option>
-                    @foreach ($departements as $key => $departement)
-                        <option value="{{ $departement->id }}">{{ $departement->nom }}</option>
-                    @endforeach
+                <select name="categorie_id" id="categorie_id" class="form-control" required>
+                    <option value="" selected disabled> --indiquer la catégore professionnel--</option>
+                    <?php $__currentLoopData = $categories_professionnels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $categories_professionnel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($categories_professionnel->id); ?>"><?php echo e($categories_professionnel->nom); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
                
             </div>
@@ -116,10 +116,10 @@ aria-hidden="true">
                         <div class="pull-right">
                             
 							<div class="d-flex justify-content-between">
-								@can('utilisateurs')
+								<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('utilisateurs')): ?>
 									<a class="modal-effect btn btn-outline-primary " data-effect="effect-scale"
 										data-toggle="modal" href="#exampleModal"> Ajouter un établissement</a>
-								@endcan
+								<?php endif; ?>
 							</div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@ aria-hidden="true">
                             <tr>
                               
                                 <th>#</th>
-								<th>Nom de l'etablissement </th>
+								<th>Nom de la filière-métier </th>
                                 <th>code </th>
                                 <th>Departement </th>
                                 <th>Actions</th>
@@ -143,32 +143,32 @@ aria-hidden="true">
                         </thead>
                         <tbody>
                            
-                            @foreach ($etablissements as $etablissement)
+                            <?php $__currentLoopData = $filieres_metiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $filieres_metier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                      <tr>
-                                    <td>{{ ++$i }}</td>
-                                    <td>{{ $etablissement->nom}}</td>
-                                    <td>{{ $etablissement->code}}</td>
-                                    <td>{{ $etablissement->departement->nom }}</td>
+                                    <td><?php echo e(++$i); ?></td>
+                                    <td><?php echo e($filieres_metier->nom); ?></td>
+                                    <td><?php echo e($filieres_metier->code); ?></td>
+                                    <td><?php echo e($filieres_metier->categorie->nom); ?></td>
                                     <td>
                                  
                                
-                                        @can('utilisateurs')
+                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('utilisateurs')): ?>
                                         <button class="btn btn-outline-success btn-sm"
-                                            data-etab_nom="{{ $etablissement->nom }}" data-pro_id="{{ $etablissement->id }}"
-                                            data-dep_nom="{{ $etablissement->departement->nom }}"
-                                            data-code="{{ $etablissement->code }}" data-toggle="modal"
+                                            data-fil_nom="<?php echo e($filieres_metier->nom); ?>" data-pro_id="<?php echo e($filieres_metier->id); ?>"
+                                            data-cat_nom="<?php echo e($filieres_metier->categorie->nom); ?>"
+                                            data-code="<?php echo e($filieres_metier->code); ?>" data-toggle="modal"
                                             data-target="#edit_Product">modifier</button>
-                                    @endcan
+                                    <?php endif; ?>
 
-                                    @can('utilisateurs')
-                                        <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $etablissement->id }}"
-                                            data-etab_nom="{{ $etablissement->nom }}" data-toggle="modal"
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('utilisateurs')): ?>
+                                        <button class="btn btn-outline-danger btn-sm " data-pro_id="<?php echo e($filieres_metier->id); ?>"
+                                            data-fil_nom="<?php echo e($filieres_metier->nom); ?>" data-toggle="modal"
                                             data-target="#modaldemo9">supprimer</button>
-                                    @endcan
+                                    <?php endif; ?>
 
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
@@ -180,40 +180,43 @@ aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"> Modifier l'établissement</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"> Modifier la filière-métier</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action='etablissements/update' method="post">
-                        {{ method_field('patch') }}
-                        {{ csrf_field() }}
+                    <form action='filieres_metiers/update' method="post">
+                        <?php echo e(method_field('patch')); ?>
+
+                        <?php echo e(csrf_field()); ?>
+
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="title"> Nom de l'établissement :</label>
+                                <label for="title"> Nom de la filière-métier :</label>
 
                                 <input type="hidden" class="form-control" name="pro_id" id="pro_id" value="">
 
-                                <input type="text" class="form-control" name="etab_nom" id="etab_nom">
+                                <input type="text" class="form-control" name="fil_nom" id="fil_nom">
                             </div>
                             <div class="form-group">
                                 <label for="des">Code :</label>
                                 <input type="text"  name="code"  id='code'
                                     class="form-control">
                             </div>
-                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Département</label>
-                            <select name="dep_nom" id="dep_nom" class="custom-select my-1 mr-sm-2" required>
-                                @foreach ($departements as $departement)
-                                    <option>{{ $departement->nom }}</option>
-                                @endforeach
+                            <div class="form-group">
+                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Catégorie professionnel</label>
+                            <select name="cat_nom" id="cat_nom" class="custom-select my-1 mr-sm-2" required>
+                              <?php $__currentLoopData = $categories_professionnels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $categories_professionnel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <option><?php echo e($categories_professionnel->nom); ?></option>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
 
-                          
+                        </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"> Modifier l'établissement</button>
+                            <button type="submit" class="btn btn-primary"> Modifier la filière-métier</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </div>
                     </form>
@@ -228,18 +231,20 @@ aria-hidden="true">
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-header">
-                   <h5 class="modal-title"> Supprimer un etablissement</h5>
+                   <h5 class="modal-title"> Supprimer la filière-métier</h5>
                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
                    </button>
                </div>
-               <form action="etablissements/destroy" method="post">
-                   {{ method_field('delete') }}
-                   {{ csrf_field() }}
+               <form action="filieres_metiers/destroy" method="post">
+                   <?php echo e(method_field('delete')); ?>
+
+                   <?php echo e(csrf_field()); ?>
+
                    <div class="modal-body">
-                       <p>  Etes vous sur de vouloir supprimer cet etablissement? </p><br>
+                       <p>  Etes vous sur de vouloir supprimer cette filière-métier? </p><br>
                        <input type="hidden" name="pro_id" id="pro_id" value="">
-                       <input class="form-control" name="etab_nom" id="etab_nom" type="text" readonly>
+                       <input class="form-control" name="fil_nom" id="fil_nom" type="text" readonly>
                    </div>
                    <div class="modal-footer">
                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -255,35 +260,35 @@ aria-hidden="true">
 <!-- Container closed -->
 </div>
 <!-- main-content closed -->
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <!-- Internal Data tables -->
-<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')); ?>"></script>
 <!--Internal  Datatable js -->
-<script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
+<script src="<?php echo e(URL::asset('assets/js/table-data.js')); ?>"></script>
 <!--Internal  Notify js -->
-<script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/notify/js/notifIt.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/notify/js/notifit-custom.js')); ?>"></script>
 <!-- Internal Modal js-->
 
 <script>
     $('#edit_Product').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
-        var etab_nom = button.data('etab_nom')
-        var dep_nom = button.data('dep_nom')
+        var fil_nom = button.data('fil_nom')
+        var cat_nom = button.data('cat_nom')
         var pro_id = button.data('pro_id')
         var code = button.data('code')
         var modal = $(this)
-        modal.find('.modal-body #etab_nom').val(etab_nom);
-        modal.find('.modal-body #dep_nom').val(dep_nom);
+        modal.find('.modal-body #fil_nom').val(fil_nom);
+        modal.find('.modal-body #cat_nom').val(cat_nom);
         modal.find('.modal-body #code').val(code);
         modal.find('.modal-body #pro_id').val(pro_id);
     })
@@ -292,17 +297,19 @@ aria-hidden="true">
     $('#modaldemo9').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var pro_id = button.data('pro_id')
-        var etab_nom = button.data('etab_nom')
+        var fil_nom = button.data('fil_nom')
         var modal = $(this)
 
         modal.find('.modal-body #pro_id').val(pro_id);
-        modal.find('.modal-body #etab_nom').val(etab_nom);
+        modal.find('.modal-body #fil_nom').val(fil_nom);
     })
 
     $(document).ready(function() {
-    $('#etablissements').DataTable();
+    $('#filieres_metiers').DataTable();
 } );
 
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/soltana/Bureau/Bookone/resources/views/filieres_metiers/index.blade.php ENDPATH**/ ?>

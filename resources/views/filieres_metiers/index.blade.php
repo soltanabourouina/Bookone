@@ -3,7 +3,7 @@
     <!--Internal   Notify -->
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 @section('title')
-Etablissements
+Filieres metiers
 @stop
 <!-- Internal Data table css -->
 
@@ -80,7 +80,7 @@ aria-hidden="true">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{ route('etablissements.store') }}" method="post">
+        <form action="{{ route('filieres_metiers.store') }}" method="post">
             {{ csrf_field() }}
             <div class="modal-body">
                
@@ -93,10 +93,10 @@ aria-hidden="true">
                     <input type="text" class="form-control" id="code" name="code" required>
                 </div>
                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Departement</label>
-                <select name="departement_id" id="departement_id" class="form-control" required>
-                    <option value="" selected disabled> --indiquer le département--</option>
-                    @foreach ($departements as $key => $departement)
-                        <option value="{{ $departement->id }}">{{ $departement->nom }}</option>
+                <select name="categorie_id" id="categorie_id" class="form-control" required>
+                    <option value="" selected disabled> --indiquer la catégore professionnel--</option>
+                    @foreach ($categories_professionnels as $key => $categories_professionnel)
+                        <option value="{{ $categories_professionnel->id }}">{{ $categories_professionnel->nom }}</option>
                     @endforeach
                 </select>
                
@@ -135,7 +135,7 @@ aria-hidden="true">
                             <tr>
                               
                                 <th>#</th>
-								<th>Nom de l'etablissement </th>
+								<th>Nom de la filière-métier </th>
                                 <th>code </th>
                                 <th>Departement </th>
                                 <th>Actions</th>
@@ -143,26 +143,26 @@ aria-hidden="true">
                         </thead>
                         <tbody>
                            
-                            @foreach ($etablissements as $etablissement)
+                            @foreach ($filieres_metiers as $filieres_metier)
                                      <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $etablissement->nom}}</td>
-                                    <td>{{ $etablissement->code}}</td>
-                                    <td>{{ $etablissement->departement->nom }}</td>
+                                    <td>{{ $filieres_metier->nom}}</td>
+                                    <td>{{ $filieres_metier->code}}</td>
+                                    <td>{{ $filieres_metier->categorie->nom }}</td>
                                     <td>
                                  
                                
                                         @can('utilisateurs')
                                         <button class="btn btn-outline-success btn-sm"
-                                            data-etab_nom="{{ $etablissement->nom }}" data-pro_id="{{ $etablissement->id }}"
-                                            data-dep_nom="{{ $etablissement->departement->nom }}"
-                                            data-code="{{ $etablissement->code }}" data-toggle="modal"
+                                            data-fil_nom="{{ $filieres_metier->nom }}" data-pro_id="{{ $filieres_metier->id }}"
+                                            data-cat_nom="{{ $filieres_metier->categorie->nom }}"
+                                            data-code="{{ $filieres_metier->code }}" data-toggle="modal"
                                             data-target="#edit_Product">modifier</button>
                                     @endcan
 
                                     @can('utilisateurs')
-                                        <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $etablissement->id }}"
-                                            data-etab_nom="{{ $etablissement->nom }}" data-toggle="modal"
+                                        <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $filieres_metier->id }}"
+                                            data-fil_nom="{{ $filieres_metier->nom }}" data-toggle="modal"
                                             data-target="#modaldemo9">supprimer</button>
                                     @endcan
 
@@ -180,40 +180,41 @@ aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"> Modifier l'établissement</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"> Modifier la filière-métier</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action='etablissements/update' method="post">
+                    <form action='filieres_metiers/update' method="post">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="title"> Nom de l'établissement :</label>
+                                <label for="title"> Nom de la filière-métier :</label>
 
                                 <input type="hidden" class="form-control" name="pro_id" id="pro_id" value="">
 
-                                <input type="text" class="form-control" name="etab_nom" id="etab_nom">
+                                <input type="text" class="form-control" name="fil_nom" id="fil_nom">
                             </div>
                             <div class="form-group">
                                 <label for="des">Code :</label>
                                 <input type="text"  name="code"  id='code'
                                     class="form-control">
                             </div>
-                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Département</label>
-                            <select name="dep_nom" id="dep_nom" class="custom-select my-1 mr-sm-2" required>
-                                @foreach ($departements as $departement)
-                                    <option>{{ $departement->nom }}</option>
-                                @endforeach
+                            <div class="form-group">
+                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Catégorie professionnel</label>
+                            <select name="cat_nom" id="cat_nom" class="custom-select my-1 mr-sm-2" required>
+                              @foreach ($categories_professionnels as $categories_professionnel)
+                              <option>{{ $categories_professionnel->nom }}</option>
+                              @endforeach
                             </select>
 
-                          
+                        </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary"> Modifier l'établissement</button>
+                            <button type="submit" class="btn btn-primary"> Modifier la filière-métier</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </div>
                     </form>
@@ -228,18 +229,18 @@ aria-hidden="true">
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-header">
-                   <h5 class="modal-title"> Supprimer un etablissement</h5>
+                   <h5 class="modal-title"> Supprimer la filière-métier</h5>
                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
                    </button>
                </div>
-               <form action="etablissements/destroy" method="post">
+               <form action="filieres_metiers/destroy" method="post">
                    {{ method_field('delete') }}
                    {{ csrf_field() }}
                    <div class="modal-body">
-                       <p>  Etes vous sur de vouloir supprimer cet etablissement? </p><br>
+                       <p>  Etes vous sur de vouloir supprimer cette filière-métier? </p><br>
                        <input type="hidden" name="pro_id" id="pro_id" value="">
-                       <input class="form-control" name="etab_nom" id="etab_nom" type="text" readonly>
+                       <input class="form-control" name="fil_nom" id="fil_nom" type="text" readonly>
                    </div>
                    <div class="modal-footer">
                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -277,13 +278,13 @@ aria-hidden="true">
 <script>
     $('#edit_Product').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
-        var etab_nom = button.data('etab_nom')
-        var dep_nom = button.data('dep_nom')
+        var fil_nom = button.data('fil_nom')
+        var cat_nom = button.data('cat_nom')
         var pro_id = button.data('pro_id')
         var code = button.data('code')
         var modal = $(this)
-        modal.find('.modal-body #etab_nom').val(etab_nom);
-        modal.find('.modal-body #dep_nom').val(dep_nom);
+        modal.find('.modal-body #fil_nom').val(fil_nom);
+        modal.find('.modal-body #cat_nom').val(cat_nom);
         modal.find('.modal-body #code').val(code);
         modal.find('.modal-body #pro_id').val(pro_id);
     })
@@ -292,15 +293,15 @@ aria-hidden="true">
     $('#modaldemo9').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var pro_id = button.data('pro_id')
-        var etab_nom = button.data('etab_nom')
+        var fil_nom = button.data('fil_nom')
         var modal = $(this)
 
         modal.find('.modal-body #pro_id').val(pro_id);
-        modal.find('.modal-body #etab_nom').val(etab_nom);
+        modal.find('.modal-body #fil_nom').val(fil_nom);
     })
 
     $(document).ready(function() {
-    $('#etablissements').DataTable();
+    $('#filieres_metiers').DataTable();
 } );
 
 </script>

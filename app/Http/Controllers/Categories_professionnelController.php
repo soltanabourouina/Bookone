@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\etablissements;
-use App\departements;
+use App\categories_professionnel;
+
 use Illuminate\Http\Request;
 
-class EtablissementsController extends Controller
+class Categories_professionnelController extends Controller
 
 {
     /**
@@ -16,9 +16,8 @@ class EtablissementsController extends Controller
      */
     public function index(Request $request)
     {
-        $departements = departements::all();
-        $etablissements = etablissements::orderBy('id','DESC')->paginate(5);
-        return view('etablissements.index', compact('departements','etablissements'))
+        $categories_professionnel = categories_professionnel::orderBy('id','DESC')->paginate(5);
+        return view('categories_professionnel.index', compact('categories_professionnel'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -43,21 +42,21 @@ class EtablissementsController extends Controller
      */
     public function store(Request $request)
     {
-         etablissements::create($request->all());
-      //  return view('etablissements.index', compact('etablissements'));
+        categories_professionnel::create($request->all());
+      //  return view('categories_professionnel.index', compact('categories_professionnel'));
         
-        session()->flash('Add', 'Ajouté avec succés');
-        return redirect('/etablissements');
+        session()->flash('Add', 'La nouvelle catégorie a été ajoutée avec succés');
+        return redirect('/categories_professionnel');
     }
    
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\etablissements  $etablissements
+     * @param  \App\categories_professionnel  $categories_professionnel
      * @return \Illuminate\Http\Response
      */
-    public function show(etablissements $etablissements)
+    public function show(categories_professionnel $categories_professionnel)
     {
         //
     }
@@ -65,10 +64,10 @@ class EtablissementsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\etablissements  $etablissements
+     * @param  \App\categories_professionnel  $categories_professionnel
      * @return \Illuminate\Http\Response
      */
-    public function edit(etablissements $etablissements)
+    public function edit(categories_professionnel $categories_professionnel)
     {
         //
     }
@@ -77,20 +76,18 @@ class EtablissementsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\etablissements  $etablissements
+     * @param  \App\categories_professionnel  $categories_professionnel
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
 
-       $id = departements::where('nom', $request->dep_nom)->first()->id;
+       $categories_professionnel = categories_professionnel::findOrFail($request->pro_id);
 
-       $etablissements = etablissements::findOrFail($request->pro_id);
-
-       $etablissements->update([
-       'nom' => $request->etab_nom,
+       $categories_professionnel->update([
+       'nom' => $request->cat_nom,
        'code' => $request->code,
-       'departement_id' => $id,
+       'Status' => $request->Status,
        ]);
 
        session()->flash('Edit', 'modifié avec succés');
@@ -101,13 +98,13 @@ class EtablissementsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\etablissements  $etablissements
+     * @param  \App\categories_professionnel  $categories_professionnel
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)
     {
-         $etablissements = etablissements::findOrFail($request->pro_id);
-         $etablissements->delete();
+         $categories_professionnel = categories_professionnel::findOrFail($request->pro_id);
+         $categories_professionnel->delete();
          session()->flash('delete', 'supprimé avec succés');
          return back();
     }

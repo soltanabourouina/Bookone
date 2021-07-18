@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\FileVariantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,7 +39,26 @@ Route::resource('pays','PaysController');
 Route::resource('regions','RegionController');
 Route::resource('departements','DepartementsController');
 Route::resource('etablissements','EtablissementsController');
+Route::resource('categories_professionnel','Categories_professionnelController');
+Route::resource('filieres_metiers','Filieres_MetierController');
 
+
+Route::get('/file-variants', [FileVariantController::class, "browse"])->name("browseFileVariantsGET");
+Route::get('/file-variants/add', [FileVariantController::class, "addGET"])->name("addFileVariantGET");
+Route::post('/file-variants/add', [FileVariantController::class, "addPOST"])->name("addFileVariantPOST");
+Route::get('/file-variants/{id}', [FileVariantController::class, "read"])->name("readFileVariantGET");
+Route::get('/file-variants/{id}/edit', [FileVariantController::class, "editGET"])->name("editFileVariantGET");
+Route::post('/file-variants/{id}/edit', [FileVariantController::class, "editPOST"])->name("editFileVariantPOST");
+Route::get('/file-variants/{id}/delete', [FileVariantController::class, "delete"])->name("deleteFileVariantGET");
+
+
+
+
+
+
+
+
+Route::resource('employees','EmployeeController');
 
 Route::get('category-tree-view',['uses'=>'OrganismesController@manageCategory']);
 
@@ -90,3 +110,6 @@ Route::get('customers_report', 'Customers_Report@index')->name("customers_report
 Route::post('Search_customers', 'Customers_Report@Search_customers');
 
 Route::get('/{page}', 'AdminController@index');
+
+
+

@@ -34,7 +34,7 @@ Departements
     <script>
         window.onload = function() {
             notif({
-                msg: " la Ajout a été  effectuée avec succès",
+                msg: " l'a 'Ajout a été  effectuée avec succès",
                 type: "success"
             });
         }
