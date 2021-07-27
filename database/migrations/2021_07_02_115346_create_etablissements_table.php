@@ -15,8 +15,8 @@ class CreateEtablissementsTable extends Migration
     {
         Schema::create('etablissements', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('code');
+            $table->string('nom')->unique();
+            $table->string('code')->unique();
             $table->unsignedBigInteger('departement_id');
             $table->foreign('departement_id')->references('id')->on('departements')->onDelete('cascade');
           

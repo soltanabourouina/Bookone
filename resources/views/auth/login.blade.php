@@ -58,7 +58,7 @@ Login
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-main-primary btn-block">
+                                                <button type="submit" class="btn btn-primary btn-block">
                                                     {{ __('Valider') }}
                                                 </button>
                                             </form>

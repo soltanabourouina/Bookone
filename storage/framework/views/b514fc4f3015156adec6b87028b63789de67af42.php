@@ -2,10 +2,11 @@
 
 <?php $__env->startSection('content'); ?>
 <div class="w-25 m-auto">
-   
+    <?php echo $__env->make('alerts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="text-end py-3">
-        <a class="btn btn-warning" href="<?php echo e(route('indexGET')); ?>">Retour</a>
+        <a class="btn btn-warning" href="<?php echo e(route('home')); ?>">Retour</a>
     </div>
+   
     <form action="<?php echo e(route("editFileVariantPOST", ["id" => $file_variant->id])); ?>" method="post">
         <?php echo csrf_field(); ?>
         <div class="form-group mb-3">

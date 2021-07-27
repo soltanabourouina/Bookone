@@ -4,10 +4,11 @@
 
 @section('content')
 <div class="w-25 m-auto">
-   
+    @include('alerts')
     <div class="text-end py-3">
-        <a class="btn btn-warning" href="{{ route('indexGET') }}">Retour</a>
+        <a class="btn btn-warning" href="{{ route('home') }}">Retour</a>
     </div>
+   
     <form action="{{ route("editFileVariantPOST", ["id" => $file_variant->id]) }}" method="post">
         @csrf
         <div class="form-group mb-3">

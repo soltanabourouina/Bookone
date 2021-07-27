@@ -86,7 +86,7 @@ unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-main-primary btn-block">
+                                                <button type="submit" class="btn btn-primary btn-block">
                                                     <?php echo e(__('Valider')); ?>
 
                                                 </button>

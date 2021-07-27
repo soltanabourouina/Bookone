@@ -1,257 +1,313 @@
 <?php $__env->startSection('title'); ?>
 Dashboard
 <?php $__env->stopSection(); ?>
-<?php $__env->startSection('css'); ?>
-    <!--  Owl-carousel css-->
-    <link href="<?php echo e(URL::asset('assets/plugins/owl-carousel/owl.carousel.css')); ?>" rel="stylesheet" />
-    <!-- Maps css -->
-    <link href="<?php echo e(URL::asset('assets/plugins/jqvmap/jqvmap.min.css')); ?>" rel="stylesheet">
+
+<?php $__env->startSection('title'); ?>
+Home
 <?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')); ?>" rel="stylesheet" />
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')); ?>" rel="stylesheet" />
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')); ?>" rel="stylesheet">
+<!--Internal   Notify -->
+<link href="<?php echo e(URL::asset('assets/plugins/notify/css/notifIt.css')); ?>" rel="stylesheet" />
+<link href="<?php echo e(URL::asset('assets/css/form_wiz.css')); ?>" rel="stylesheet" />
+<style>
+    h3 {
+  color: rgb(29, 77, 141);
+}
+</style>
+
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('page-header'); ?>
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="left-content">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Hi, welcome back!</h2>
-                <p class="mg-b-0">Sales monitoring dashboard template.</p>
-            </div>
-        </div>
-        <div class="main-dashboard-header-right">
-            <div>
-                <label class="tx-13">Customer Ratings</label>
-                <div class="main-star">
-                    <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i
-                        class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i
-                        class="typcn typcn-star"></i> <span>(14,873)</span>
-                </div>
-            </div>
-            <div>
-                <label class="tx-13">Online Sales</label>
-                <h5>563,275</h5>
-            </div>
-            <div>
-                <label class="tx-13">Offline Sales</label>
-                <h5>783,675</h5>
+                <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Définition des Structures et Integration des Données</h2>
+                <p class="mg-b-0">Processus D'integration</p>
             </div>
         </div>
     </div>
     <!-- /breadcrumb -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <!-- row -->
-    <!--div class="row row-sm">
-        <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-            <div class="card overflow-hidden sales-card bg-primary-gradient">
-                <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-                    <div class="">
-                        <h6 class="mb-3 tx-12 text-white">اجمالي الفواتير</h6>
-                    </div>
-                    <div class="pb-0 mt-0">
-                        <div class="d-flex">
-                            <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">
+<div class="row row-md">
+    <div class="col-md-12">
+<div class="step">
+    <div>
+       <div class="circle"><i class="fa fa-check"></i></div>
+    </div>
+    <div>
+       <div class="title" ><h3>Premiere Etape</h3></div>
 
-                                    <?php echo e(number_format(\App\invoices::sum('Total'), 2)); ?>
-
-                                </h4>
-                                <p class="mb-0 tx-12 text-white op-7"><?php echo e(\App\invoices::count()); ?></p>
-                            </div>
-                            <span class="float-right my-auto mr-auto">
-                                <i class="fas fa-arrow-circle-up text-white"></i>
-                                <span class="text-white op-7">100%</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <span id="compositeline" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-            <div class="card overflow-hidden sales-card bg-danger-gradient">
-                <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-                    <div class="">
-                        <h6 class="mb-3 tx-12 text-white">الفواتير الغير مدفوعة</h6>
-                    </div>
-                    <div class="pb-0 mt-0">
-                        <div class="d-flex">
-                            <div class="">
-                                <h3 class="tx-20 font-weight-bold mb-1 text-white">
-
-                                    <?php echo e(number_format(\App\invoices::where('Value_Status', 2)->sum('Total'), 2)); ?>
-
-
-                                </h3>
-                                <p class="mb-0 tx-12 text-white op-7"><?php echo e(\App\invoices::where('Value_Status', 2)->count()); ?>
-
-                                </p>
-                            </div>
-                            <span class="float-right my-auto mr-auto">
-                                <i class="fas fa-arrow-circle-down text-white"></i>
-                                <span class="text-white op-7">
-
-                                    <?php
-                                    $count_all= \App\invoices::count();
-                                    $count_invoices2 = \App\invoices::where('Value_Status', 2)->count();
-
-                                    if($count_invoices2 == 0){
-                                       echo $count_invoices2 = 0;
-                                    }
-                                    else{
-                                       echo $count_invoices2 = $count_invoices2 / $count_all *100;
-                                    }
-                                    ?>
-
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <span id="compositeline2" class="pt-1">3,2,4,6,12,14,8,7,14,16,12,7,8,4,3,2,2,5,6,7</span>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-            <div class="card overflow-hidden sales-card bg-success-gradient">
-                <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-                    <div class="">
-                        <h6 class="mb-3 tx-12 text-white">الفواتير المدفوعة</h6>
-                    </div>
-                    <div class="pb-0 mt-0">
-                        <div class="d-flex">
-                            <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">
-
-                                    <?php echo e(number_format(\App\invoices::where('Value_Status', 1)->sum('Total'), 2)); ?>
-
-
-                                </h4>
-                                <p class="mb-0 tx-12 text-white op-7">
-                                    <?php echo e(\App\invoices::where('Value_Status', 1)->count()); ?>
-
-                                </p>
-                            </div>
-                            <span class="float-right my-auto mr-auto">
-                                <i class="fas fa-arrow-circle-up text-white"></i>
-                                <span class="text-white op-7">
-                                    <?php
-                                        $count_all= \App\invoices::count();
-                                        $count_invoices1 = \App\invoices::where('Value_Status', 1)->count();
-
-                                        if($count_invoices1 == 0){
-                                           echo $count_invoices1 = 0;
-                                        }
-                                        else{
-                                           echo $count_invoices1 = $count_invoices1 / $count_all *100;
-                                        }
-                                    ?>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <span id="compositeline3" class="pt-1">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span>
-            </div>
-        </div>
-        <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
-            <div class="card overflow-hidden sales-card bg-warning-gradient">
-                <div class="pl-3 pt-3 pr-3 pb-2 pt-0">
-                    <div class="">
-                        <h6 class="mb-3 tx-12 text-white">الفواتير المدفوعة جزئيا</h6>
-                    </div>
-                    <div class="pb-0 mt-0">
-                        <div class="d-flex">
-                            <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">
-
-                                    <?php echo e(number_format(\App\invoices::where('Value_Status', 3)->sum('Total'), 2)); ?>
-
-
-                                </h4>
-                                <p class="mb-0 tx-12 text-white op-7">
-                                    <?php echo e(\App\invoices::where('Value_Status', 3)->count()); ?>
-
-                                </p>
-                            </div>
-                            <span class="float-right my-auto mr-auto">
-                                <i class="fas fa-arrow-circle-down text-white"></i>
-                                <span class="text-white op-7">
-                                    <?php
-                                        $count_all= \App\invoices::count();
-                                        $count_invoices1 = \App\invoices::where('Value_Status', 1)->count();
-
-                                        if($count_invoices1 == 0){
-                                            echo $count_invoices1 = 0;
-                                        }
-                                        else{
-                                          echo $count_invoices1 = $count_invoices1 / $count_all *100;
-                                        }
-                                    ?>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <span id="compositeline4" class="pt-1">5,9,5,6,4,12,18,14,10,15,12,5,8,5,12,5,12,10,16,12</span>
-            </div>
-        </div>
-    </div -->
-    <!-- row closed -->
-
-    <!-- row opened 
-    <div class="row row-sm">
-        <div class="col-md-12 col-lg-12 col-xl-7">
-            <div class="card">
-                <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-0">نسبة احصائية الفواتير</h4>
-                        <i class="mdi mdi-dots-horizontal text-gray"></i>
-                    </div>
-
-                </div>
-                <div class="card-body" style="width: 70%">
-                    <?php echo $chartjs->render(); ?>
-
-
-                </div>
-            </div>
+       <div class="row"> 
+        <div class="col-md-6"> 
+        <button class="btn btn-primary"
+         data-toggle="collapse" href="#multiCollapseExample1" 
+         role="button" aria-expanded="false" 
+         aria-controls="multiCollapseExample1" onclick="myFunction1()">
+         1-Interfaces de correspondances des fichiers</button>
+        </div> <br>
+        <div class="collapse" id="multiCollapseExample1">
+            <div class="col-md-6">  
+               <div class="card card-body">
+               Correspondances possibles: <br>
+               Fichier du personnel<br>
+               Fichier de plan de paie <br>
+               Fichier de paie <br>
+               <div class="col-md-6 align-self-end">  
+                <a class="slide-item"  href="<?php echo e(url('/' . ($page = 'file-variants'))); ?>">Créer les variantes de fichiers</a>
+               </div>
+               </div>
+           </div>
+         </div>
         </div>
 
 
-        <div class="col-lg-12 col-xl-5">
-            <div class="card card-dashboard-map-one">
-                <label class="main-content-label">نسبة احصائية الفواتير</label>
-                <div class="" style="width: 100%">
-                    <?php echo $chartjs_2->render(); ?>
-
+        <br>
+         <div class="row">  
+            <div class="col-md-6"> 
+        <button class="btn btn-primary" 
+        type="button" data-toggle="collapse"
+         data-target="#multiCollapseExample2"
+          aria-expanded="false" 
+          aria-controls="multiCollapseExample2" onclick="myFunction2()">
+          2-Définir la structure d'un fichier</button>
+        </div> <br>
+        <div class="collapse" id="multiCollapseExample2">
+          
+            <div class="col-md-6">  
+                <div class="card card-body">
+                Structures des fichiers à définir: <br>
+                Fichier du personnel<br>
+                Fichier de plan de paie <br>
+                Fichier de paie <br>
+                <div class="col-md-6 align-self-end">  
+                    <a class="slide-item" href="<?php echo e(route('spreadsheetColumnStructureReviewGET')); ?>" >Définir la structure d'un fichier</a>
+                </div>
                 </div>
             </div>
         </div>
-    </div>-->
-    <!-- row closed -->
+        </div>
+
+
+        <br>
+        <div class="row">
+        <div class="col-md-6"> 
+        <button class="btn btn-primary" 
+        type="button" data-toggle="collapse" 
+        data-target="#multiCollapseExample3" 
+        aria-expanded="false" 
+        aria-controls="multiCollapseExample3" onclick="myFunction3()">
+        3-Codes budgétaires</button>
+        </div>
+        <br>
+           
+        </div>
+        <div class="collapse multi-collapse" id="multiCollapseExample3">
+            <div class="col-md-6">  
+                <div class="card card-body">
+                Définir les codes budgétaires: <br>
+                <div class="col-md-6 align-self-end">  
+                    <a class="slide-item" href="<?php echo e(route('budgetCodesGET')); ?>">Codes budgétaires</a>
+                    </div>
+                </div>    
+            </div>
+        </div>
+
+    </div>
+ </div>
+ <div class="step">
+     
+    <div>
+       <div class="circle">2</div>
+    </div>
+    <div>
+       <div class="title"><h3>Deuxieme Etape</h3></div>
+
+       <button class="btn btn-primary" 
+        type="button" data-toggle="collapse" 
+        data-target="#multiCollapseExample4" 
+        aria-expanded="false" 
+        aria-controls="multiCollapseExample4" onclick="myFunction4()">
+        Téléchargement des fichiers</button>
+
+       <div class="caption"><br>
+           <div class="collapse" id="multiCollapseExample4">
+            <div class="col-md-6">  
+                <div class="card card-body">
+                    Téléchargement des fichiers: <br>
+                    personnel <br>
+                    paie <br>
+                <div class="col-md-6 align-self-end">  
+                    <a class="slide-item" href="<?php echo e(route('uploadFilesGET')); ?>" >Télécharger un fichier</a>
+                  </div>
+                </div>
+            </div>
+       
+      </div>
+
+       </div>
+    </div>
+ </div>
+ <div class="step">
+    <div>
+       <div class="circle">3</div>
+    </div>
+    <div>
+       <div class="title"><h3>Troisieme Etape</h3> </div>
+       <button class="btn btn-primary" 
+       type="button" data-toggle="collapse" 
+       data-target="#multiCollapseExample5" 
+       aria-expanded="false" 
+       aria-controls="multiCollapseExample5" onclick="myFunction5()">
+       Simultaion</button>
+
+      <div class="caption"> <br>
+          <div class="collapse" id="multiCollapseExample5">
+         
+           <div class="col-md-6">  
+               <div class="card card-body">
+                Créer Une Simulation <br>
+                personnel <br>
+                paie <br>
+               <div class="col-md-6 align-self-end">  
+                <a class="slide-item" href="<?php echo e(route('simulationsGET')); ?>" >Simulations</a>
+                </div>
+               </div>
+           </div>
+      
+     </div>
+
+      </div>
+
+    </div>
+ </div>
+ <div class="step">
+    <div>
+       <div class="circle">4</div>
+
+    </div>
+    <div>
+
+       <div class="title"><h3>Consulter </h3> </div>
+        <button class="btn btn-primary" 
+        type="button" data-toggle="collapse" 
+        data-target="#multiCollapseExample6" 
+        aria-expanded="false" 
+        aria-controls="multiCollapseExample7" onclick="myFunction6()">
+        Evénements Générés</button>
+        <button class="btn btn-primary" 
+        type="button" data-toggle="collapse" 
+        data-target="#multiCollapseExample7" 
+        aria-expanded="false" 
+        aria-controls="multiCollapseExample7" onclick="myFunction7()">
+        Historique des fichiers </button>
+
+       <div class="caption"> <br>
+           <div class="collapse" id="multiCollapseExample6">
+            <div class="col-md-6">  
+                <div class="card card-body">
+                    Evénements Générés suite aux simulations <br>
+                <div class="col-md-6 align-self-end">  
+                 <a class="slide-item" href="<?php echo e(route('eventsGET')); ?>" >Evenements</a>
+                  </div>
+                </div>
+            </div>
+            </div>
+       </div>
+
+<!--Transaction -->
+       <div class="caption"> <br>
+        <div class="collapse" id="multiCollapseExample7">
+         <div class="col-md-6">  
+             <div class="card card-body">
+                 Ensemble des fichiers téléchargés: <br>
+                
+             <div class="col-md-6 align-self-end">  
+                <a class="slide-item" href="<?php echo e(route('transactionsGET')); ?>" >Transactions</a>
+            </div>
+             </div>
+         </div>
+         </div>
     </div>
     </div>
-    <!-- Container closed -->
+ </div>
+
+</div>
+</div>
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
-    <!--Internal  Chart.bundle js -->
-    <script src="<?php echo e(URL::asset('assets/plugins/chart.js/Chart.bundle.min.js')); ?>"></script>
-    <!-- Moment js -->
-    <script src="<?php echo e(URL::asset('assets/plugins/raphael/raphael.min.js')); ?>"></script>
-    <!--Internal  Flot js-->
-    <script src="<?php echo e(URL::asset('assets/plugins/jquery.flot/jquery.flot.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/plugins/jquery.flot/jquery.flot.pie.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/plugins/jquery.flot/jquery.flot.resize.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/plugins/jquery.flot/jquery.flot.categories.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/js/dashboard.sampledata.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/js/chart.flot.sampledata.js')); ?>"></script>
-    <!--Internal Apexchart js-->
-    <script src="<?php echo e(URL::asset('assets/js/apexcharts.js')); ?>"></script>
-    <!-- Internal Map -->
-    <script src="<?php echo e(URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/js/modal-popup.js')); ?>"></script>
+   
     <!--Internal  index js -->
     <script src="<?php echo e(URL::asset('assets/js/index.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/js/jquery.vmap.sampledata.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/js/form_wiz.js')); ?>"></script>
+
+    <script>
+function myFunction1() {
+$("#multiCollapseExample2").collapse('hide');
+$("#multiCollapseExample3").collapse('hide');
+$("#multiCollapseExample4").collapse('hide');
+$("#multiCollapseExample5").collapse('hide');
+$("#multiCollapseExample6").collapse('hide');
+$("#multiCollapseExample7").collapse('hide');
+}
+function myFunction2() {
+$("#multiCollapseExample1").collapse('hide');
+$("#multiCollapseExample3").collapse('hide');
+$("#multiCollapseExample4").collapse('hide');
+$("#multiCollapseExample5").collapse('hide');
+$("#multiCollapseExample6").collapse('hide');
+$("#multiCollapseExample7").collapse('hide');
+}
+function myFunction3() {
+$("#multiCollapseExample1").collapse('hide');
+$("#multiCollapseExample2").collapse('hide');
+$("#multiCollapseExample4").collapse('hide');
+$("#multiCollapseExample5").collapse('hide');
+$("#multiCollapseExample6").collapse('hide');
+$("#multiCollapseExample7").collapse('hide');
+}
+
+function myFunction4() {
+$("#multiCollapseExample2").collapse('hide');
+$("#multiCollapseExample3").collapse('hide');
+$("#multiCollapseExample1").collapse('hide');
+$("#multiCollapseExample5").collapse('hide');
+$("#multiCollapseExample6").collapse('hide');
+$("#multiCollapseExample7").collapse('hide');
+}
+function myFunction5() {
+$("#multiCollapseExample1").collapse('hide');
+$("#multiCollapseExample3").collapse('hide');
+$("#multiCollapseExample4").collapse('hide');
+$("#multiCollapseExample2").collapse('hide');
+$("#multiCollapseExample6").collapse('hide');
+$("#multiCollapseExample7").collapse('hide');
+}
+function myFunction6() {
+$("#multiCollapseExample1").collapse('hide');
+$("#multiCollapseExample2").collapse('hide');
+$("#multiCollapseExample4").collapse('hide');
+$("#multiCollapseExample5").collapse('hide');
+$("#multiCollapseExample3").collapse('hide');
+$("#multiCollapseExample7").collapse('hide');
+}
+function myFunction7() {
+$("#multiCollapseExample1").collapse('hide');
+$("#multiCollapseExample2").collapse('hide');
+$("#multiCollapseExample4").collapse('hide');
+$("#multiCollapseExample5").collapse('hide');
+$("#multiCollapseExample6").collapse('hide');
+$("#multiCollapseExample3").collapse('hide');
+}
+
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/soltana/Bureau/Bookone/resources/views/home.blade.php ENDPATH**/ ?>

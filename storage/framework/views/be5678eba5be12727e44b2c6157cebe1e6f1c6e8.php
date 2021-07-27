@@ -2,10 +2,11 @@
 
 <?php $__env->startSection('content'); ?>
 <div class="container">
- 
+    <?php echo $__env->make('alerts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="text-end py-3">
         <a class="btn btn-success" href="<?php echo e(route('addFileVariantGET')); ?>">Ajouter</a>
-     
+        <a class="btn btn-warning" href="<?php echo e(route('home')); ?>">Retour</a>
+
     </div>
     <table class="table">
         <tr>

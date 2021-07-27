@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\StructureDefinitionController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\CorrespondanceLigneBudgetaireController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\FileVariantController;
+use App\Http\Controllers\SimulationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +50,39 @@ Route::resource('etablissements','EtablissementsController');
 Route::resource('categories_professionnel','Categories_professionnelController');
 Route::resource('filieres_metiers','Filieres_MetierController');
 
+/*debut interfaces integrations*/
+//Route::get('/home', [MainController::class, 'home'])->name('home');
+//SRoute::get('/test', [MainController::class, 'testGET'])->name('testGET');
+
+Route::get('/uploadFile', [FileUploadController::class, 'uploadFilesGET'])->name('uploadFilesGET');
+Route::post('/uploadFile', [FileUploadController::class, 'uploadFilesPOST'])->name('uploadFilesPOST');
+
+Route::get('/spreadsheetStructure', [StructureDefinitionController::class, 'reviewGET'])->name('spreadsheetColumnStructureReviewGET');
+Route::get('/defineSpreadsheetStructure', [StructureDefinitionController::class, 'uploadSpreadsheetColumnStructureGET'])->name('uploadSpreadsheetColumnStructureGET');
+Route::post('/defineSpreadsheetStructure', [StructureDefinitionController::class, 'uploadSpreadsheetColumnStructurePOST'])->name('uploadSpreadsheetColumnStructurePOST');
+Route::post('/saveSpreadsheetStructure', [StructureDefinitionController::class, 'saveSpreadsheetColumnStructureDefinitionPOST'])->name('saveSpreadsheetColumnStructureDefinition');
+
+Route::get('/transactions', [TransactionController::class, 'transactionsGET'])->name('transactionsGET');
+Route::get('/transactions/{id}/cancel', [TransactionController::class, 'cancelTransactionGET'])->name('cancelTransactionGET');
+
+Route::get('/budgetCodes/upload', [CorrespondanceLigneBudgetaireController::class, 'codesBudgetairesFileUploadGET'])->name('codesBudgetairesFileUploadGET');
+Route::post('/budgetCodes/define', [CorrespondanceLigneBudgetaireController::class, 'codesBudgetairesDefinePOST'])->name('codesBudgetairesDefinePOST');
+Route::get('/budgetCodes', [CorrespondanceLigneBudgetaireController::class, 'budgetCodesGET'])->name('budgetCodesGET');
+Route::post('/budgetCodes/save', [CorrespondanceLigneBudgetaireController::class, 'saveCodesBudgetairesPOST'])->name('saveCodesBudgetairesPOST');
+
+Route::get('/events', [EventController::class, 'eventsGET'])->name('eventsGET');
+Route::get('/events/{id}/cancel', [EventController::class, 'cancelEventGET'])->name('cancelEventGET');
+
+Route::get('/simulations', [SimulationController::class, 'simulationsGET'])->name('simulationsGET');
+Route::get('/simulations/create', [SimulationController::class, 'createSimulationGET'])->name('createSimulationGET');
+Route::post('/simulations/create', [SimulationController::class, 'createSimulationPOST'])->name('createSimulationPOST');
+Route::get('/simulations/{id}', [SimulationController::class, 'readSimulationGET'])->name('readSimulationGET');
+Route::get('/simulations/{id}/edit', [SimulationController::class, 'editSimulationGET'])->name('editSimulationGET');
+Route::get('/simulations/{id}/confirm', [SimulationController::class, 'confirmSimulationGET'])->name('confirmSimulationGET');
+Route::get('/simulations/{id}/delete', [SimulationController::class, 'deleteSimulationGET'])->name('deleteSimulationGET');
+Route::get('/simulations/{id}/events/create', [SimulationController::class, 'createSimulationEventGET'])->name('createSimulationEventGET');
+Route::post('/simulations/{id}/events/create', [SimulationController::class, 'createSimulationEventPOST'])->name('createSimulationEventPOST');
+
 
 Route::get('/file-variants', [FileVariantController::class, "browse"])->name("browseFileVariantsGET");
 Route::get('/file-variants/add', [FileVariantController::class, "addGET"])->name("addFileVariantGET");
@@ -51,18 +92,12 @@ Route::get('/file-variants/{id}/edit', [FileVariantController::class, "editGET"]
 Route::post('/file-variants/{id}/edit', [FileVariantController::class, "editPOST"])->name("editFileVariantPOST");
 Route::get('/file-variants/{id}/delete', [FileVariantController::class, "delete"])->name("deleteFileVariantGET");
 
+/*fin interfaces integrations*/
 
 
 
 
 
-
-
-Route::resource('employees','EmployeeController');
-
-Route::get('category-tree-view',['uses'=>'OrganismesController@manageCategory']);
-
-Route::post('add-category',['as'=>'add.category','uses'=>'OrganismesController@addCategory']);
 
 
 Route::get('/section/{id}', 'InvoicesController@getproducts');

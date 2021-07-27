@@ -4,10 +4,11 @@
 
 @section('content')
 <div class="container">
- 
+    @include('alerts')
     <div class="text-end py-3">
         <a class="btn btn-success" href="{{ route('addFileVariantGET') }}">Ajouter</a>
-     
+        <a class="btn btn-warning" href="{{ route('home') }}">Retour</a>
+
     </div>
     <table class="table">
         <tr>

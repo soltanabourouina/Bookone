@@ -1,16 +1,9 @@
-<!-- main-sidebar -->
+
+
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar sidebar-scroll">
     <div class="main-sidebar-header active">
-        <!--a class="desktop-logo logo-light active" href="<?php echo e(url('/' . ($page = 'index'))); ?>"><img
-            src="<?php echo e(URL::asset('assets/img/brand/logo.png')); ?>" class="main-logo" alt="logo"></a>
-    <a class="desktop-logo logo-dark active" href="<?php echo e(url('/' . ($page = 'index'))); ?>"><img
-            src="<?php echo e(URL::asset('assets/img/brand/logo-white.png')); ?>" class="main-logo dark-theme" alt="logo"></a>
-    <a class="logo-icon mobile-logo icon-light active" href="<?php echo e(url('/' . ($page = 'index'))); ?>"><img
-            src="<?php echo e(URL::asset('assets/img/brand/favicon.png')); ?>" class="logo-icon" alt="logo"></a>
-    <a class="logo-icon mobile-logo icon-dark active" href="<?php echo e(url('/' . ($page = 'index'))); ?>"><img
-            src="<?php echo e(URL::asset('assets/img/brand/favicon-white.png')); ?>" class="logo-icon dark-theme"
-            alt="logo"></a-->
+     
             <h2 >BookOne</h2>
     </div>
     <div class="main-sidemenu">
@@ -98,10 +91,7 @@
                     </svg><span class="side-menu__label">Configurations</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
 
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('liste contacts')): ?>
-                    <li><a class="slide-item" href="<?php echo e(url('/' . ($page = 'file-variants'))); ?>">Variantes de fichiers</a>
-                    </li>
-                    <?php endif; ?>    
+                     
 
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('liste contacts')): ?>
                     <li><a class="slide-item" href="<?php echo e(url('/' . ($page = 'employees'))); ?>">Employés </a>

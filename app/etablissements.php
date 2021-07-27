@@ -12,7 +12,10 @@ class etablissements extends Model
         'departement_id',
        
     ];
-
+    public static function findByCode($code)
+    {
+        return self::where('code', $code)->first();
+    }
    public function departement()
    {
    return $this->belongsTo('App\departements');
