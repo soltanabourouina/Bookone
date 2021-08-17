@@ -11,6 +11,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\FileVariantController;
 use App\Http\Controllers\SimulationController;
+use App\Http\Controllers\ScenariiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +50,13 @@ Route::resource('departements','DepartementsController');
 Route::resource('etablissements','EtablissementsController');
 Route::resource('categories_professionnel','Categories_professionnelController');
 Route::resource('filieres_metiers','Filieres_MetierController');
+
+Route::resource('postesdepense','PostedepenseController');
+
+Route::resource('scenarii','ScenariiController');
+
+
+Route::get('/scenarii/{id}', [ScenariiController::class, 'show'])->name('scenarii.show');
 
 /*debut interfaces integrations*/
 //Route::get('/home', [MainController::class, 'home'])->name('home');

@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -53,7 +54,7 @@ class Helpers
 
     public static function showMonetaryValue($value)
     {
-        return number_format($value / 100, 2, ',', ' ') . " €";
+        return ceil($value/100)  . " €"; // demande de prendre que la valeure entiere 
     }
 
     public static function getCurrentYear()
@@ -66,3 +67,4 @@ class Helpers
         return intval(Carbon::now()->format('m'));
     }
 }
+

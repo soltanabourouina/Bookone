@@ -153,7 +153,7 @@ aria-hidden="true">
                                  
                                
                                         @can('utilisateurs')
-                                        <button class="btn btn-outline-success btn-sm"
+                                        <button class="btn btn-success btn-sm"
                                             data-etab_nom="{{ $etablissement->nom }}" data-pro_id="{{ $etablissement->id }}"
                                             data-dep_nom="{{ $etablissement->departement->nom }}"
                                             data-code="{{ $etablissement->code }}" data-toggle="modal"
@@ -161,7 +161,7 @@ aria-hidden="true">
                                     @endcan
 
                                     @can('utilisateurs')
-                                        <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $etablissement->id }}"
+                                        <button class="btn btn-danger btn-sm " data-pro_id="{{ $etablissement->id }}"
                                             data-etab_nom="{{ $etablissement->nom }}" data-toggle="modal"
                                             data-target="#modaldemo9">supprimer</button>
                                     @endcan

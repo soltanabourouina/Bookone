@@ -13,7 +13,7 @@ Home
 <link href="<?php echo e(URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')); ?>" rel="stylesheet">
 <!--Internal   Notify -->
 <link href="<?php echo e(URL::asset('assets/plugins/notify/css/notifIt.css')); ?>" rel="stylesheet" />
-<link href="<?php echo e(URL::asset('assets/css/form_wiz.css')); ?>" rel="stylesheet" />
+
 <style>
     h3 {
   color: rgb(29, 77, 141);
@@ -36,13 +36,15 @@ Home
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <div class="row row-md">
-    <div class="col-md-12">
+    <div class="col-md-6 col-lg-6 col-xl-5 bg-white">
 <div class="step">
     <div>
-       <div class="circle"><i class="fa fa-check"></i></div>
+    <div class="title" ><h3>Premiere Etape</h3></div>
     </div>
     <div>
-       <div class="title" ><h3>Premiere Etape</h3></div>
+
+        
+      
 
        <div class="row"> 
         <div class="col-md-6"> 
@@ -106,28 +108,28 @@ Home
         3-Codes budgétaires</button>
         </div>
         <br>
-           
-        </div>
-        <div class="collapse multi-collapse" id="multiCollapseExample3">
-            <div class="col-md-6">  
-                <div class="card card-body">
-                Définir les codes budgétaires: <br>
-                <div class="col-md-6 align-self-end">  
-                    <a class="slide-item" href="<?php echo e(route('budgetCodesGET')); ?>">Codes budgétaires</a>
-                    </div>
-                </div>    
+            <div class="collapse multi-collapse" id="multiCollapseExample3">
+                <div class="col-md-6">  
+                    <div class="card card-body">
+                    Définir les codes budgétaires: <br>
+                    <div class="col-md-6 align-self-end">  
+                        <a class="slide-item" href="<?php echo e(route('budgetCodesGET')); ?>">Codes budgétaires</a>
+                        </div>
+                    </div>    
+                </div>
             </div>
         </div>
+
 
     </div>
  </div>
  <div class="step">
      
     <div>
-       <div class="circle">2</div>
+       <div class="title"><h3>Deuxieme Etape</h3></div>
     </div>
     <div>
-       <div class="title"><h3>Deuxieme Etape</h3></div>
+     
 
        <button class="btn btn-primary" 
         type="button" data-toggle="collapse" 
@@ -156,10 +158,8 @@ Home
  </div>
  <div class="step">
     <div>
-       <div class="circle">3</div>
-    </div>
+        <div class="title"><h3>Troisieme Etape</h3> </div>
     <div>
-       <div class="title"><h3>Troisieme Etape</h3> </div>
        <button class="btn btn-primary" 
        type="button" data-toggle="collapse" 
        data-target="#multiCollapseExample5" 
@@ -189,12 +189,11 @@ Home
  </div>
  <div class="step">
     <div>
-       <div class="circle">4</div>
+        <div class="title"><h3>Consulter </h3> </div>
 
     </div>
     <div>
 
-       <div class="title"><h3>Consulter </h3> </div>
         <button class="btn btn-primary" 
         type="button" data-toggle="collapse" 
         data-target="#multiCollapseExample6" 
@@ -241,12 +240,25 @@ Home
 </div>
 </div>
 
+<!--Partie scénarii-->
+<div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-info-transparent">
+    
+       SCENARII
+       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('liste contacts')): ?>
+       <li><a class="slide-item" href="<?php echo e(url('/' . ($page = 'postesdepense'))); ?>">Créer un evènnement  </a>
+       </li>
+
+       <li><a class="slide-item" href="<?php echo e(url('/' . ($page = 'scenarii'))); ?>">Créer un scenario  </a>
+       </li>
+   <?php endif; ?> 
+</div>
+
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
    
     <!--Internal  index js -->
     <script src="<?php echo e(URL::asset('assets/js/index.js')); ?>"></script>
-    <script src="<?php echo e(URL::asset('assets/js/form_wiz.js')); ?>"></script>
 
     <script>
 function myFunction1() {

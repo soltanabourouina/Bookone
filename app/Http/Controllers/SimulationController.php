@@ -15,6 +15,7 @@ class SimulationController extends Controller
     {
         $simulations = Simulation::all();
         $budget = BudgetPayrollRow::all();
+        
         if($budget->isEmpty()) {
             $budget = null;
         } else {

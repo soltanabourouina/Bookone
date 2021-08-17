@@ -7,12 +7,12 @@ Login
     <link href="<?php echo e(URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')); ?>" rel="stylesheet">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <div class="container-fluid">
+    <div class="container"> <!---fluid-->
         <div class="row no-gutter">
             <!-- The image half -->
             <!-- The content half -->
             <div class="col-md-6 col-lg-6 col-xl-5 bg-white">
-                <div class="login d-flex align-items-center py-2">
+                <div class="login d-flex align-items-center">
                     <!-- Demo content-->
                     <div class="container p-0">
                         <div class="row">
@@ -100,12 +100,12 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div><!-- End -->
 
-            <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
+            <!--div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
                 <div class="row wd-100p mx-auto text-center">
                     <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
                         <img src="<?php echo e(URL::asset('assets/img/media/login.png')); ?>" class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
                     </div>
-                </div>
+                </div-->
             </div>
 
         </div>

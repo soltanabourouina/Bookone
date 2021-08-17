@@ -43,56 +43,68 @@
                         <div class="col-6 pb-3">
                             <label>Catégories socioprofessionels</label>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_A">Agent de Maitrise</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_A" id="GENERAL_RAISE_POPULATION_CSP_A" value="true" checked>
-                            </div>
+                            
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_A">Agent de Maitrise</label>
+                               </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_B">Agent de Maitrise Atelier</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_B" id="GENERAL_RAISE_POPULATION_CSP_B" value="true" checked>
-                            </div>
+                            
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_B">Agent de Maitrise Atelier</label>
+                             </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_C">Cadre</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_C" id="GENERAL_RAISE_POPULATION_CSP_C" value="true" checked>
-                            </div>
+                           
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_C">Cadre</label>
+                                 </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_D">Cadre Dirigeant</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_D" id="GENERAL_RAISE_POPULATION_CSP_D" value="true" checked>
-                            </div>
+                           
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_D">Cadre Dirigeant</label>
+                              </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_E">Employé</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_E" id="GENERAL_RAISE_POPULATION_CSP_E" value="true" checked>
-                            </div>
+                  
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_E">Employé</label>
+                                         </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_N">Ouvrier false qualifié</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_N" id="GENERAL_RAISE_POPULATION_CSP_N" value="true" checked>
-                            </div>
+                           
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_N">Ouvrier false qualifié</label>
+                                </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_O">Ouvrier</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_O" id="GENERAL_RAISE_POPULATION_CSP_O" value="true" checked>
-                            </div>
+                           
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_O">Ouvrier</label>
+                               </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_P">Ouvrier Qualifié</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_P" id="GENERAL_RAISE_POPULATION_CSP_P" value="true" checked>
-                            </div>
+                            
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_P">Ouvrier Qualifié</label>
+                               </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_S">Technicien Supérieur</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_S" id="GENERAL_RAISE_POPULATION_CSP_S" value="true" checked>
-                            </div>
+                          
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_S">Technicien Supérieur</label>
+                              </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_T">Technicien</label>
                                 <input type="checkbox" class="form-check-input" name="GENERAL_RAISE_POPULATION_CSP_T" id="GENERAL_RAISE_POPULATION_CSP_T" value="true" checked>
-                            </div>
+                           
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_CSP_T">Technicien</label>
+                              </div>
                         </div>
                         <div class="col-6 pb-3">
                             <label for="GENERAL_RAISE_COEF">Coefficient</label>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_COEF_OPERATOR_HT">Supérieur à</label>
                                 <input type="radio" class="form-check-input" name="GENERAL_RAISE_POPULATION_COEF_OPERATOR" id="GENERAL_RAISE_POPULATION_COEF_OPERATOR_HT" value="GENERAL_RAISE_POPULATION_COEF_OPERATOR_HT" checked>
-                            </div>
+                            
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_COEF_OPERATOR_HT">Supérieur à</label>
+                                </div>
                             <div class="form-check">
-                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_COEF_OPERATOR_LT">Inférieur à</label>
                                 <input type="radio" class="form-check-input" name="GENERAL_RAISE_POPULATION_COEF_OPERATOR" id="GENERAL_RAISE_POPULATION_COEF_OPERATOR_LT" value="GENERAL_RAISE_POPULATION_COEF_OPERATOR_LT">
-                            </div>
+                            
+                                <label class="form-check-label" for="GENERAL_RAISE_POPULATION_COEF_OPERATOR_LT">Inférieur à</label>
+                               </div>
                             <input type="number" class="form-control" name="GENERAL_RAISE_COEF" id="GENERAL_RAISE_COEF" placeholder="Coefficient">
                         </div>
                         
