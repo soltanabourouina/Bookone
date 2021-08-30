@@ -1,20 +1,19 @@
-@extends('layouts.master')
-@section('css')
+<?php $__env->startSection('css'); ?>
 
     <!--Internal   Notify -->
-    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
-@section('title')
+    <link href="<?php echo e(URL::asset('assets/plugins/notify/css/notifIt.css')); ?>" rel="stylesheet" />
+<?php $__env->startSection('title'); ?>
 Budget|scenarii|projection
-@stop
-<link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-<link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
+<?php $__env->stopSection(); ?>
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')); ?>" rel="stylesheet">
+<link href="<?php echo e(URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')); ?>" rel="stylesheet">
 <!--Internal   Notify -->
-<link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+<link href="<?php echo e(URL::asset('assets/plugins/notify/css/notifIt.css')); ?>" rel="stylesheet" />
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('page-header')
+<?php $__env->startSection('page-header'); ?>
 <!-- breadcrumb -->
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
@@ -25,11 +24,11 @@ Budget|scenarii|projection
     </div>
 </div>
 <!-- breadcrumb -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
 
-@if (session()->has('Add'))
+<?php if(session()->has('Add')): ?>
     <script>
         window.onload = function() {
             notif({
@@ -39,9 +38,9 @@ Budget|scenarii|projection
         }
 
     </script>
-@endif
+<?php endif; ?>
 
-@if (session()->has('edit'))
+<?php if(session()->has('edit')): ?>
     <script>
         window.onload = function() {
             notif({
@@ -51,9 +50,9 @@ Budget|scenarii|projection
         }
 
     </script>
-@endif
+<?php endif; ?>
 
-@if (session()->has('delete'))
+<?php if(session()->has('delete')): ?>
     <script>
         window.onload = function() {
             notif({
@@ -63,7 +62,7 @@ Budget|scenarii|projection
         }
 
     </script>
-@endif
+<?php endif; ?>
 
 <!-- row -->
 <div class="row row-sm">
@@ -78,8 +77,9 @@ aria-hidden="true">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="{{ route('scenarii.store') }}" method="post">
-            {{ csrf_field() }}
+        <form action="<?php echo e(route('scenarii.store')); ?>" method="post">
+            <?php echo e(csrf_field()); ?>
+
             <div class="modal-body">
                 <div class="form-group">
                     <label for="numscenario"> numscenario scenarii*</label>
@@ -134,51 +134,63 @@ aria-hidden="true">
             <tbody>
 
 
-                    @isset($yearInit) <!--année initial -->
+                    <?php if(isset($yearInit)): ?> <!--année initial -->
                    
                        <tr> 
                       
                       
-                        {{$budgetM1 = Helpers::showMonetaryValue($budM1->Sum('amount'))}}
-                        {{$budgetM2 = Helpers::showMonetaryValue($budM2->Sum('amount'))}}
-                        {{$budgetM3 = Helpers::showMonetaryValue($budM3->Sum('amount'))}}
+                        <?php echo e($budgetM1 = Helpers::showMonetaryValue($budM1->Sum('amount'))); ?>
 
-                        {{$budgetM4 = Helpers::showMonetaryValue($budM4->Sum('amount'))}}
-                        {{$budgetM5 = Helpers::showMonetaryValue($budM5->Sum('amount'))}}
-                        {{$budgetM6 = Helpers::showMonetaryValue($budM6->Sum('amount'))}}
+                        <?php echo e($budgetM2 = Helpers::showMonetaryValue($budM2->Sum('amount'))); ?>
 
-                        {{$budgetM7 = Helpers::showMonetaryValue($budM7->Sum('amount'))}}
-                        {{$budgetM8 = Helpers::showMonetaryValue($budM8->Sum('amount'))}}
+                        <?php echo e($budgetM3 = Helpers::showMonetaryValue($budM3->Sum('amount'))); ?>
+
+
+                        <?php echo e($budgetM4 = Helpers::showMonetaryValue($budM4->Sum('amount'))); ?>
+
+                        <?php echo e($budgetM5 = Helpers::showMonetaryValue($budM5->Sum('amount'))); ?>
+
+                        <?php echo e($budgetM6 = Helpers::showMonetaryValue($budM6->Sum('amount'))); ?>
+
+
+                        <?php echo e($budgetM7 = Helpers::showMonetaryValue($budM7->Sum('amount'))); ?>
+
+                        <?php echo e($budgetM8 = Helpers::showMonetaryValue($budM8->Sum('amount'))); ?>
+
                        
-                        {{$budgetM9 = Helpers::showMonetaryValue($budM9->Sum('amount'))}}
-                        {{$budgetM10 = Helpers::showMonetaryValue($budM10->Sum('amount'))}}
-                        {{$budgetM11 = Helpers::showMonetaryValue($budM11->Sum('amount'))}}
-                        {{$budgetM12 = Helpers::showMonetaryValue($budM12->Sum('amount'))}}
+                        <?php echo e($budgetM9 = Helpers::showMonetaryValue($budM9->Sum('amount'))); ?>
+
+                        <?php echo e($budgetM10 = Helpers::showMonetaryValue($budM10->Sum('amount'))); ?>
+
+                        <?php echo e($budgetM11 = Helpers::showMonetaryValue($budM11->Sum('amount'))); ?>
+
+                        <?php echo e($budgetM12 = Helpers::showMonetaryValue($budM12->Sum('amount'))); ?>
+
                         <td>BUD 01 <br>
                             
                         </td>
                       
                         
-                        <td>{{($budgetM1) }}</td>
-                        <td>{{$budgetM2}}</td>
-                        <td>{{$budgetM3}}</td>
-                        <td>{{Helpers::showMonetaryValue($t1)}}</td>
-                        <td>{{$budgetM4}}</td>
-                        <td>{{$budgetM5}}</td>
-                        <td>{{$budgetM6}}</td>
-                        <td>{{Helpers::showMonetaryValue($t2)}}</td>
-                        <td>{{$budgetM7}}</td>
-                        <td>{{$budgetM8}}</td>
-                        <td>{{$budgetM9}}</td>
-                        <td>{{Helpers::showMonetaryValue($t3)}}</td>
-                        <td>{{$budgetM10}}</td>
-                        <td>{{$budgetM11}}</td>
-                        <td>{{$budgetM12}}</td>
-                        <td>{{Helpers::showMonetaryValue($t4)}}</td>
+                        <td><?php echo e(($budgetM1)); ?></td>
+                        <td><?php echo e($budgetM2); ?></td>
+                        <td><?php echo e($budgetM3); ?></td>
+                        <td><?php echo e(Helpers::showMonetaryValue($t1)); ?></td>
+                        <td><?php echo e($budgetM4); ?></td>
+                        <td><?php echo e($budgetM5); ?></td>
+                        <td><?php echo e($budgetM6); ?></td>
+                        <td><?php echo e(Helpers::showMonetaryValue($t2)); ?></td>
+                        <td><?php echo e($budgetM7); ?></td>
+                        <td><?php echo e($budgetM8); ?></td>
+                        <td><?php echo e($budgetM9); ?></td>
+                        <td><?php echo e(Helpers::showMonetaryValue($t3)); ?></td>
+                        <td><?php echo e($budgetM10); ?></td>
+                        <td><?php echo e($budgetM11); ?></td>
+                        <td><?php echo e($budgetM12); ?></td>
+                        <td><?php echo e(Helpers::showMonetaryValue($t4)); ?></td>
                       
                     </tr>
                        
-                    @endisset
+                    <?php endif; ?>
              
                 
                    
@@ -194,11 +206,11 @@ aria-hidden="true">
                         <div class="pull-right">
                             
 							<div class="col-lg-6 justify-content-between">
-								@can('utilisateurs')
+								<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('utilisateurs')): ?>
 									<a class="modal-effect btn btn-primary" data-effect="effect-scale"
 										data-toggle="modal" href="#exampleModal"> Ajouter un scenarii</a>
-                                        <a class="btn btn-warning" href="{{ route('home') }}">Retour</a>
-                                        @endcan
+                                        <a class="btn btn-warning" href="<?php echo e(route('home')); ?>">Retour</a>
+                                        <?php endif; ?>
 
                             
 							</div>
@@ -219,8 +231,10 @@ aria-hidden="true">
                    </button>
                </div>
                <form action="scenarii/destroy" method="post">
-                   {{ method_field('delete') }}
-                   {{ csrf_field() }}
+                   <?php echo e(method_field('delete')); ?>
+
+                   <?php echo e(csrf_field()); ?>
+
                    <div class="modal-body">
                        <p>  Etes vous sur de vouloir supprimer ce scenario? </p><br>
                        <input type="hidden" name="pro_id" id="pro_id" value="">
@@ -275,50 +289,51 @@ aria-hidden="true">
                         </thead>
                         <tbody>
 
-                            @foreach ($scenarios as $scenarii)
+                            <?php $__currentLoopData = $scenarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $scenarii): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                  <tr>
                                    
                                    
-                                    <td>{{ $scenarii->numscenario}}</td>
-									<td>{{ $scenarii->total}}</td>
+                                    <td><?php echo e($scenarii->numscenario); ?></td>
+									<td><?php echo e($scenarii->total); ?></td>
                                     <td>
-                                        @foreach($scenarii->postedepenses as $postedepense)
+                                        <?php $__currentLoopData = $scenarii->postedepenses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $postedepense): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div striped>
-                                         {{$postedepense->code}}
+                                         <?php echo e($postedepense->code); ?>
+
                                            </div> 
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                     </td>
                                     <td>
-                                        @if ($scenarii->isvalid == 0)
+                                        <?php if($scenarii->isvalid == 0): ?>
                                             
 
-                                                @can('afficher permissions')
-                                                 <a class="btn btn-outline-success btn-sm"{{ $scenarii->isvalid }}>valider le scenario</a>
-                                                 @endcan
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('afficher permissions')): ?>
+                                                 <a class="btn btn-outline-success btn-sm"<?php echo e($scenarii->isvalid); ?>>valider le scenario</a>
+                                                 <?php endif; ?>
                                             
-                                        @else
-                                                @can('afficher permissions')
-                                                <a class="btn btn-gray btn-sm" {{$scenarii->isvalid }}"> Mode projection sur le scénario {{ $scenarii->numscenario }}</a>
-                                                @endcan
+                                        <?php else: ?>
+                                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('afficher permissions')): ?>
+                                                <a class="btn btn-gray btn-sm" <?php echo e($scenarii->isvalid); ?>"> Mode projection sur le scénario <?php echo e($scenarii->numscenario); ?></a>
+                                                <?php endif; ?>
                                        
-                                        @endif
+                                        <?php endif; ?>
                                     </td>
                                     <td>
                                        
                                         
                                       
-                                    @can('utilisateurs')
-                                        <button class="btn btn-danger btn-sm " data-pro_id="{{ $scenarii->id }}"
-                                            data-numscenario="{{$scenarii->numscenario}}" data-toggle="modal"
+                                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('utilisateurs')): ?>
+                                        <button class="btn btn-danger btn-sm " data-pro_id="<?php echo e($scenarii->id); ?>"
+                                            data-numscenario="<?php echo e($scenarii->numscenario); ?>" data-toggle="modal"
                                             data-target="#modaldemo9">supprimer</button>
-                                    @endcan
+                                    <?php endif; ?>
 
 
                                     </td>
                                     
                                 </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             
                         </tbody>
                     </table>
@@ -333,17 +348,17 @@ aria-hidden="true">
 <!-- Container closed -->
 </div>
 <!-- main-content closed -->
-@endsection
-@section('js')
-<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')); ?>"></script>
 <!--Internal  Datatable js -->
 
-<script src="{{ URL::asset('assets/js/modal.js') }}"></script>
+<script src="<?php echo e(URL::asset('assets/js/modal.js')); ?>"></script>
 <!--Internal  Notify js -->
-<script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/notify/js/notifIt.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/plugins/notify/js/notifit-custom.js')); ?>"></script>
 <script>
 
 
@@ -382,4 +397,6 @@ $(document).ready(function() {
     } );
 
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/soltana/Bureau/testold/Bookone/resources/views/scenarii/index.blade.php ENDPATH**/ ?>

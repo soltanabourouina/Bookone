@@ -178,6 +178,7 @@ class FileUploadController extends Controller
                         break;
                     case 'date_de_naissance':
                     case 'date_anciennete':
+                    case 'date_de_sortie':
                         $person->{$structure->colonne_bdd} = Carbon::parse($line[$structure->colonne_client]);
                         break;
                     case 'salaire_annuel_de_base':

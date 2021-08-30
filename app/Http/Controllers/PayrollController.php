@@ -31,15 +31,20 @@ class PayrollController extends Controller
             'code_regroupement_secondaire' => $code_secondaire->abreviation,
         ])->first();
         
+       
         if ($payrollRow == null) {
+            if ($payrollLine->montantSalarial=='-') {
+                $payrollLine->montantSalarial = 0;
+            }
             $payrollRow = PayrollRow::create([
+               
+
                 'year' => $payrollLine->year,
                 'month' => $payrollLine->month,
                 'employee_ref' => $employee->ref,
                 'code_regroupement_secondaire' => $code_secondaire->abreviation,
                 'amount' => $payrollLine->montantSalarial,
             ]);
-
             Event::create([
                 'transaction_id' => $payrollLine->transaction_id,
                 'year' => $payrollRow->year,
@@ -52,6 +57,8 @@ class PayrollController extends Controller
                     'amount' => $payrollRow->amount,
                 ]),
             ]);
+        
+            
         } else {
             $new_amount = $payrollRow->amount + $payrollLine->montantSalarial;
             

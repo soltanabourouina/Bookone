@@ -127,6 +127,7 @@ class CodeRegroupementSecondaireSeeder extends Seeder
 		["B", "B12", "BASE-ABS-MALADIE", "Déduction absence maladie", "M", true],
 		["B", "B13", "BASE-ABS-MATERNITE", "Déduction absence maternité", "M", true],
 		["B", "B14", "BASE-ABS-RETARD", "Déduction absence retard", "M", true],
+		["B", "B99", "BASE", "Total brut du mois", "M", true],
 		["B", "C10", "COMMISSION", "Commission annuelle", "A", true],
 		["B", "C11", "COMMISSION", "Commission semestrielle", "S", true],
 		["B", "C12", "COMMISSION", "Commission trimestrielle", "T", true],

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BudgetPayrollRow;
+use App\Employe;
 use App\postedepense;
 use App\scenario;
 use Illuminate\Http\Request;
@@ -43,6 +44,7 @@ class ScenariiController extends Controller
 
         $budM7 = BudgetPayrollRow::Sum('amount')->where('code_regroupement_secondaire','ZGC')->where('month','=',7)->get();    
         $budM8 = BudgetPayrollRow::Sum('amount')->where('code_regroupement_secondaire','ZGC')->where('month','=',8)->get();    
+        
         $budM9 = BudgetPayrollRow::Sum('amount')->where('code_regroupement_secondaire','ZGC')->where('month','=',9)->get();    
         $t3=($budM7->Sum('amount') + $budM8->Sum('amount')+$budM9->Sum('amount'));
 
@@ -52,9 +54,20 @@ class ScenariiController extends Controller
         $t4 =($budM10->Sum('amount') + $budM11->Sum('amount')+$budM12->Sum('amount'));
 
 
+        //EFM: effectif de personnes présente en fin de mois
+        //select MIN(year) from personnel_file_rows
+      //  $minyear= DB::select(DB::raw("select MIN(year) FROM personnel_file_rows"));
+   //  dd($minyear);
+        $eff = DB::select(DB::raw("select month, COUNT(Distinct matricule) 
+        From personnel_file_rows
+         WHERE (date_de_sortie IS NULL and year=(select MIN(year) FROM personnel_file_rows LIMIT 1) ) 
+         GROUP BY month"));
+       // $eff=BudgetPayrollRow :: count('employee_ref');    
+       dd($eff);
+
         return view('scenarii.index', compact('scenarios','budM1',
         'budM2','budM3','budM4','budM5','budM6','budM7','budM8','budM9','budM10','budM11','budM12',
-        'yearInit','monthInit','t1','t2','t3','t4'))
+        'yearInit','monthInit','t1','t2','t3','t4','eff'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

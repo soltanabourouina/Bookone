@@ -1,1 +1,0 @@
-<?php /**PATH /home/soltana/Bureau/Bookone/resources/views/layouts/models.blade.php ENDPATH**/ ?>

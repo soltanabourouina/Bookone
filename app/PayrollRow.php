@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\FileUploadController;
 use Illuminate\Database\Eloquent\Model;
 
 class PayrollRow extends Model

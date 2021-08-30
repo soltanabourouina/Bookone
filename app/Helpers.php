@@ -54,7 +54,9 @@ class Helpers
 
     public static function showMonetaryValue($value)
     {
-        return ceil($value/100)  . " €"; // demande de prendre que la valeure entiere 
+        //return ceil($value/100)  . " €"; // demande de prendre que la valeure entiere 
+
+        return number_format($value / 100, 2, ',', ' ') . " €";
     }
 
     public static function getCurrentYear()
